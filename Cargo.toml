@@ -1,0 +1,7 @@
+[package]
+name = "cff3000"
+version = "0.1.0"
+authors = ["Sebastian Reichel <sre@ring0.de>"]
+
+[dependencies]
+gpiochip = { git = "https://github.com/sre/rust-gpiochip" }
