@@ -166,10 +166,18 @@ impl CFF3000 {
         Ok(())
     }
 
+    /// Flush LED events
+    pub fn flush_led_events(&self) -> std::io::Result<()> {
+        try!(self.green.flush());
+        try!(self.red.flush());
+        Ok(())
+    }
+
     /// Query CFA3000 state and interpret the following
     /// LED pattern. This function blocks for 8 seconds
     /// to capture the LED blink pattern.
     pub fn state(&self) -> std::io::Result<CFF3000State> {
+        try!(self.flush_led_events());
         try!(self.check());
 
         let mut eventlog: std::vec::Vec<Event> = std::vec::Vec::new();
